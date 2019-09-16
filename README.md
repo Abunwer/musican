@@ -1,6 +1,6 @@
 # musician
 
-To run the dokcer image please do the following commands: 
+To run the app please do the following commands: 
 
 1- create virtual environment and install requirements.txt
 
