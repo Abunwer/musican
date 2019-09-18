@@ -19,31 +19,33 @@ export default class Albums extends Component{
 
     render(){
         return (
-            <div>
+            
                 <Query query={ALBUMS_QUERY}>
                     {
                         ({loading, error, data})=>{
                             if(loading) return <h6>loading</h6>
                             if(error) console.log(error);
-                            // console.log(data)
-                            return (
-                                <Fragment>
-                                    {
-                                        data.albums.map(album=>(
-                                            <div>
-                                                <p>{album.title}</p>
-                                                <p>{album.releaseDate}</p>
-                                                <p>{album.genre}</p>
-                                                <p>{album.price}</p>
-                                            </div>
-                                        ))
-                                    }
-                                </Fragment>
-                            )
+                            if(data){
+                                return (
+                                    <Fragment>
+                                        {
+                                            data.albums.map(album=>(
+                                                <div className='card'>
+                                                    <p><spane>Title: </spane>{album.title}</p>
+                                                    <p><spane>Release Date: </spane>{album.releaseDate}</p>
+                                                    <p><spane>Gender: </spane>{album.genre}</p>
+                                                    <p><spane>Price: </spane>{album.price}</p>
+                                                </div>
+                                            ))
+                                        }
+                                    </Fragment>
+                                )
+                            }{
+                                return(<p>None</p>)
+                            }
                         }
                     }
                 </Query>
-            </div>
         )
     }
 }

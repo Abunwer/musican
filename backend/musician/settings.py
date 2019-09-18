@@ -81,8 +81,11 @@ WSGI_APPLICATION = 'musician.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
 
@@ -129,10 +132,13 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'frontend/static/'),
+    os.path.join(BASE_DIR, '/static/'),
 )
 
 
 GRAPHENE = {
     'SCHEMA': 'music.schema.schema'
 }
+
+
+CORS_ORIGIN_ALLOW_ALL = True

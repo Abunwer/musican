@@ -1,32 +1,36 @@
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo';
 import Albums from './component/Albums';
 import Artists from './component/Artists';
 import Songs from './component/Songs';
-import Config from './config';
+import './App.css';
 
 const client = new ApolloClient({
-    uri: Config.uri,
+  uri: 'http://localhost:8000/graphql',
 })
-class App extends Component{
-    render(){
-        return (
-            <ApolloProvider client={client}>
-                <div className='album'>
-                   <Albums/>
-                </div>
-                <div className='artist'>
-                   <Artists/>
-                </div>
-                <div className='song'>
-                   <Songs/>
-                </div>
-            </ApolloProvider>
-        )
-    }
+
+
+
+function App() {
+  return (
+    <ApolloProvider client={client}>
+      <div clatssName='content'>
+        <div className='box'>
+          <h5>Albums</h5>
+          <Albums/>
+        </div>
+        <div className='box'>
+          <h5>Artists</h5>
+          <Artists/>
+        </div>
+        <div className='box'>
+          <h5>Songs</h5>
+          <Songs/>
+        </div>
+      </div>
+    </ApolloProvider>
+  );
 }
 
-
-ReactDOM.render(<App />, document.getElementById('app'));
+export default App;

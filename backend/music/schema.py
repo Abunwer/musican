@@ -97,6 +97,32 @@ class CreateAlbum(graphene.Mutation):
         return CreateAlbum(album=album)
 
 
+class CreateArtist(graphene.Mutation):
+    first_name = graphene.String()
+    last_name = graphene.String()
+    gender = graphene.String()
+    nationality = graphene.String()
+
+    class Arguments:
+        first_name = graphene.String()
+        last_name = graphene.String()
+        gender = graphene.String()
+        nationality = graphene.String()
+
+
+    def mutate(self, info, first_name, last_name, gender, nationality):
+        artist = Artist(
+            first_name=first_name, 
+            last_name=last_name, 
+            gender=gender, 
+            nationality=nationality
+        )
+
+        artist.save()
+
+        return CreateArtist(artist=artist)
+
+
 class Mutation(graphene.ObjectType):
     create_album = CreateAlbum.Field()
 

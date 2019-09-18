@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.utils import timezone
 
 GENDER_CHOICES = (
     ('M', 'Male'),
@@ -17,7 +18,7 @@ class Artist(models.Model):
 
 class Album(models.Model):
     title = models.CharField(max_length=100)
-    release_date = models.DateField(default=datetime.now())
+    release_date = models.DateField(default=timezone.now,null=True)
     genre = models.CharField(max_length=50)
     price = models.FloatField(max_length=10, default=0.0)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
@@ -27,10 +28,11 @@ class Album(models.Model):
 
 class Song(models.Model):
     title = models.CharField(max_length=100)
-    audio_file = models.FileField(null=True)
+    audio_file = models.FileField(null=True, blank=True)
     length = models.IntegerField(default=0)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
+
 
