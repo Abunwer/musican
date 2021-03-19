@@ -2,5 +2,5 @@ Django==2.2.13
 graphene-django==2.5.0 
 django-cors-headers==3.1.0     
 graphene==2.1.8
-djangorestframework==3.10.3 
+djangorestframework==3.11.2 
 Markdown==3.1.1  
